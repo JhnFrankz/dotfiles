@@ -33,4 +33,10 @@ echo "  -> Asignando atajo Ctrl+Alt+T para Alacritty..."
 kwriteconfig6 --file kglobalshortcutsrc --group services --group Alacritty.desktop --key _launch Ctrl+Alt+T
 kwriteconfig6 --file kglobalshortcutsrc --group services --group org.kde.konsole.desktop --key _launch none
 
+# 6. Capturas de pantalla: Copiar directo al portapapeles al soltar selección
+echo "  -> Configurando Spectacle para copiar directo al portapapeles..."
+kwriteconfig6 --file spectaclerc --group General --key autoSaveImage false
+kwriteconfig6 --file spectaclerc --group General --key clipboardGroup PostScreenshotCopyImage
+kwriteconfig6 --file spectaclerc --group General --key useReleaseToCapture true
+
 echo "✔ Todos los ajustes de KDE Plasma aplicados correctamente."

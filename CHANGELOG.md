@@ -6,12 +6,29 @@ Historial de ajustes, configuraciones y personalizaciones aplicadas al sistema o
 
 ## 📅 2026-08-31
 
+### 📸 Capturas de Pantalla: Copiado Directo al Portapapeles (Spectacle)
+* **Categoría:** Utilidades / Capturas (Spectacle / KDE Plasma 6)
+* **Archivo afectado:** `~/.config/spectaclerc`
+* **Cambios aplicados:**
+  1. `clipboardGroup=PostScreenshotCopyImage`: Copia automáticamente la imagen al portapapeles tras realizar la captura.
+  2. `autoSaveImage=false`: Evita guardar archivos `.png` no deseados en el disco.
+  3. `useReleaseToCapture=true`: Finaliza la captura inmediatamente al soltar el clic del ratón (igual que Windows Snipping Tool con `Super + Shift + S`).
+
+#### ⏪ Instrucciones de reversión:
+```bash
+kwriteconfig6 --file spectaclerc --group General --key clipboardGroup PostScreenshotDoNothing
+kwriteconfig6 --file spectaclerc --group General --key useReleaseToCapture false
+```
+*(GUI: Abrir Spectacle → Configuración → Guardado y Portapapeles).*
+
+---
+
 ### 🎨 Personalización de Terminal: Alacritty (Tema Dracula)
 * **Categoría:** Terminal / Apariencia (Alacritty)
 * **Archivo afectado:** `~/.config/alacritty/alacritty.toml`
 * **Cambios aplicados:**
-  1. **Esquema de colores:** Paleta oficial **Dracula** (fondo `#282a36`, texto `#f8f8f2`, acentos púrpura `#bd93f9`, rosa `#ff79c6`, verde `#50fa7b` y cian `#8be9fd`).
-  2. **Márgenes internos (*Padding*):** Se agregó `padding = { x = 12, y = 12 }`.
+  1. **Esquema de colores:** Paleta oficial **Dracula**.
+  2. **Márgenes internos (*Padding*):** `padding = { x = 12, y = 12 }`.
   3. **Cursor:** Barra vertical parpadeante (`shape = "Beam"`, `blinking = "On"`).
   4. **Opacidad:** 85% (`opacity = 0.85`).
 
@@ -40,7 +57,7 @@ kwriteconfig6 --file kglobalshortcutsrc --group services --group org.kde.konsole
 ### 🖥️ Terminal Predeterminada: Alacritty
 * **Categoría:** Aplicaciones Predeterminadas (KDE Plasma 6)
 * **Archivo afectado:** `~/.config/kdeglobals`
-* **Cambio:** Se configuró `TerminalApplication=alacritty` y `TerminalService=Alacritty.desktop` dentro de `[General]` para que el sistema abra Alacritty por defecto.
+* **Cambio:** Se configuró `TerminalApplication=alacritty` y `TerminalService=Alacritty.desktop` dentro de `[General]`.
 
 #### ⏪ Instrucciones de reversión (Restaurar Konsole por defecto):
 ```bash
