@@ -23,10 +23,12 @@ echo "  -> Desactivando aceleración del ratón (Perfil plano)..."
 kwriteconfig6 --file kcminputrc --group Libinput --group 1133 --group 49291 --group "Logitech G502 HERO Gaming Mouse" --key PointerAccelerationProfile 1
 kwriteconfig6 --file kcminputrc --group Libinput --group 1133 --group 49291 --group "Logitech G502 HERO Gaming Mouse" --key PointerAcceleration -- "-0.200"
 
-# 4. Terminal: Establecer Alacritty como terminal predeterminada
+# 4. Terminal: Establecer Alacritty como terminal predeterminada en KDE y GLib/GIO
 echo "  -> Estableciendo Alacritty como terminal predeterminada..."
 kwriteconfig6 --file kdeglobals --group General --key TerminalApplication alacritty
 kwriteconfig6 --file kdeglobals --group General --key TerminalService Alacritty.desktop
+gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
+gsettings set org.gnome.desktop.default-applications.terminal exec-arg '-e'
 
 # 5. Atajo de teclado: Ctrl+Alt+T para abrir Alacritty
 echo "  -> Asignando atajo Ctrl+Alt+T para Alacritty..."

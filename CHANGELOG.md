@@ -6,6 +6,21 @@ Historial de ajustes, configuraciones y personalizaciones aplicadas al sistema o
 
 ## 📅 2026-08-31
 
+### ⚙️ Terminal Predeterminada Global (KDE + GLib / Cachy-Update)
+* **Categoría:** Aplicaciones Predeterminadas (KDE Plasma 6 / GLib GIO)
+* **Archivos/Esquemas afectados:** `~/.config/kdeglobals` y `org.gnome.desktop.default-applications.terminal`
+* **Cambio:** Se configuró Alacritty en `kdeglobals` y en `gsettings` (`exec = 'alacritty'`, `exec-arg = '-e'`) para que aplicaciones y applets de bandeja del sistema como **`cachy-update`** lancen Alacritty en lugar de Konsole.
+
+#### ⏪ Instrucciones de reversión:
+```bash
+gsettings set org.gnome.desktop.default-applications.terminal exec 'xdg-terminal-exec'
+gsettings set org.gnome.desktop.default-applications.terminal exec-arg '--'
+kwriteconfig6 --file kdeglobals --group General --key TerminalApplication --delete
+kwriteconfig6 --file kdeglobals --group General --key TerminalService --delete
+```
+
+---
+
 ### 📸 Capturas de Pantalla: Copiado Directo al Portapapeles (Spectacle)
 * **Categoría:** Utilidades / Capturas (Spectacle / KDE Plasma 6)
 * **Archivo afectado:** `~/.config/spectaclerc`
@@ -19,7 +34,6 @@ Historial de ajustes, configuraciones y personalizaciones aplicadas al sistema o
 kwriteconfig6 --file spectaclerc --group General --key clipboardGroup PostScreenshotDoNothing
 kwriteconfig6 --file spectaclerc --group General --key useReleaseToCapture false
 ```
-*(GUI: Abrir Spectacle → Configuración → Guardado y Portapapeles).*
 
 ---
 
@@ -31,6 +45,7 @@ kwriteconfig6 --file spectaclerc --group General --key useReleaseToCapture false
   2. **Márgenes internos (*Padding*):** `padding = { x = 12, y = 12 }`.
   3. **Cursor:** Barra vertical parpadeante (`shape = "Beam"`, `blinking = "On"`).
   4. **Opacidad:** 85% (`opacity = 0.85`).
+  5. **Tamaño de fuente:** 12.0 pt.
 
 #### ⏪ Instrucciones de reversión (Volver al tema Nord por defecto):
 ```toml
@@ -50,19 +65,6 @@ kwriteconfig6 --file spectaclerc --group General --key useReleaseToCapture false
 ```bash
 kwriteconfig6 --file kglobalshortcutsrc --group services --group Alacritty.desktop --key _launch "none,none,Alacritty"
 kwriteconfig6 --file kglobalshortcutsrc --group services --group org.kde.konsole.desktop --key _launch "Ctrl+Alt+T,none,Konsole"
-```
-
----
-
-### 🖥️ Terminal Predeterminada: Alacritty
-* **Categoría:** Aplicaciones Predeterminadas (KDE Plasma 6)
-* **Archivo afectado:** `~/.config/kdeglobals`
-* **Cambio:** Se configuró `TerminalApplication=alacritty` y `TerminalService=Alacritty.desktop` dentro de `[General]`.
-
-#### ⏪ Instrucciones de reversión (Restaurar Konsole por defecto):
-```bash
-kwriteconfig6 --file kdeglobals --group General --key TerminalApplication --delete
-kwriteconfig6 --file kdeglobals --group General --key TerminalService --delete
 ```
 
 ---
