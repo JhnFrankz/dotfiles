@@ -1,0 +1,23 @@
+# Secrets and Keys
+*.key
+*.pem
+*.pub
+id_*
+known_hosts
+credentials*
+*secret*
+.env
+.env.*
+
+# History & cache
+.bash_history
+.zsh_history
+fish_variables
+*.log
+*.tmp
+.cache/
+__pycache__/
+
+# OS & Editor specifics
+.DS_Store
+Thumbs.db
