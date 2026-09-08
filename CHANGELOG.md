@@ -2,6 +2,23 @@
 
 Historial de ajustes, configuraciones y personalizaciones aplicadas al sistema operativo, junto con las instrucciones para revertirlas.
 
+## 📅 2026-09-07
+
+### 📶 Optimización y Estabilidad Wi-Fi (Realtek RTL8852BE / rtw89)
+* **Categoría:** Red / Hardware (Kernel Linux / NetworkManager)
+* **Archivos afectados:** `/etc/modprobe.d/rtw89.conf` y `/etc/NetworkManager/conf.d/default-wifi-powersave-on.conf`
+* **Script automatizado:** `scripts/wifi-fix.sh`
+* **Cambios aplicados:**
+  1. **Desactivación de PCIe ASPM (L1 / L1ss):** Se añadieron las opciones `disable_aspm_l1=y disable_aspm_l1ss=y disable_clkreq=y` a `rtw89_pci` y `disable_ps_mode=y` a `rtw89_core` para evitar la suspensión agresiva del chip Wi-Fi.
+  2. **Desactivación de Ahorro de Energía en NetworkManager:** Se configuró `wifi.powersave = 2` para mantener la potencia de transmisión estable.
+  3. **Impacto:** Elimina la degradación automática a 720p en plataformas de streaming (YouTube, Twitch, Kick) y previene caídas gRPC/WebSockets en xStation 5.
+
+#### ⏪ Instrucciones de reversión:
+```bash
+sudo rm -f /etc/modprobe.d/rtw89.conf /etc/NetworkManager/conf.d/default-wifi-powersave-on.conf
+sudo systemctl restart NetworkManager
+```
+
 ---
 
 ## 📅 2026-08-31
