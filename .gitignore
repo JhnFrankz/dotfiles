@@ -18,6 +18,9 @@ fish_variables
 .cache/
 __pycache__/
 
+# Tooling state (generated)
+.atl/
+
 # OS & Editor specifics
 .DS_Store
 Thumbs.db
